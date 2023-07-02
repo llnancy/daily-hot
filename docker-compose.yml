@@ -1,0 +1,18 @@
+version: "3.9"
+
+services:
+  daily-hot:
+    restart: always
+    image: llnancy/daily-hot:latest
+    pull_policy: always
+    # 指定网络模式为桥接模式
+    network_mode: bridge
+    container_name: daily-hot
+    ports:
+      - "8080:8080"
+
+# 使用自定义 networks
+#networks:
+#  default:
+#    external:
+#      name: nginx_backend
