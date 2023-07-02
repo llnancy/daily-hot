@@ -17,3 +17,7 @@
 - 函数式编程 `Functional programming`
 - 设计模式
 - `Spring Native`
+
+## 致谢
+
+感谢 [https://github.com/imsyy/DailyHotApi](https://github.com/imsyy/DailyHotApi) 项目作者的无私奉献与代码开源。
