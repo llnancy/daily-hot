@@ -1,7 +1,7 @@
 package io.github.llnancy.dailyhot.client;
 
 import io.github.llnancy.dailyhot.client.Kr36ExchangeClient.Kr36Response;
-import io.github.llnancy.httpexchange.core.ExchangeClient;
+import io.github.llnancy.httpexchange.core.HttpExchangeClient;
 import lombok.Data;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,7 +16,7 @@ import java.util.List;
  * @author llnancy admin@lilu.org.cn
  * @since JDK17 2023/6/29
  */
-@ExchangeClient(baseUrl = "https://gateway.36kr.com")
+@HttpExchangeClient(baseUrl = "https://gateway.36kr.com")
 public interface Kr36ExchangeClient extends BasePostExchangeClient<String, Kr36Response> {
 
     @PostExchange(url = "/api/mis/nav/home/nav/rank/hot", contentType = MediaType.APPLICATION_JSON_VALUE)

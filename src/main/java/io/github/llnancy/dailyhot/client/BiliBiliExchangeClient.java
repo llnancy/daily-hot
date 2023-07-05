@@ -1,7 +1,7 @@
 package io.github.llnancy.dailyhot.client;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.github.llnancy.httpexchange.core.ExchangeClient;
+import io.github.llnancy.httpexchange.core.HttpExchangeClient;
 import lombok.Data;
 import org.springframework.web.service.annotation.GetExchange;
 import reactor.core.publisher.Mono;
@@ -16,7 +16,7 @@ import static io.github.llnancy.dailyhot.client.BiliBiliExchangeClient.BiliBiliR
  * @author llnancy admin@lilu.org.cn
  * @since JDK17 2023/6/29
  */
-@ExchangeClient(baseUrl = "https://api.bilibili.com")
+@HttpExchangeClient(baseUrl = "https://api.bilibili.com")
 public interface BiliBiliExchangeClient extends BaseGetExchangeClient<BiliBiliResponse> {
 
     @GetExchange("/x/web-interface/ranking/v2")

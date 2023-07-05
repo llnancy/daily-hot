@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import io.github.llnancy.dailyhot.client.NewsQQExchangeClient.NewsQQClientCodecConfigurerConsumer;
 import io.github.llnancy.dailyhot.client.NewsQQExchangeClient.NewsQQResponse;
 import io.github.llnancy.httpexchange.core.ClientCodecConfigurerConsumer;
-import io.github.llnancy.httpexchange.core.ExchangeClient;
+import io.github.llnancy.httpexchange.core.HttpExchangeClient;
 import lombok.Data;
 import org.springframework.http.codec.ClientCodecConfigurer;
 import org.springframework.stereotype.Component;
@@ -20,7 +20,7 @@ import java.util.function.Consumer;
  * @author llnancy admin@lilu.org.cn
  * @since JDK17 2023/6/29
  */
-@ExchangeClient(baseUrl = "https://r.inews.qq.com", codecConfigurerConsumer = NewsQQClientCodecConfigurerConsumer.class)
+@HttpExchangeClient(baseUrl = "https://r.inews.qq.com", codecConfigurerConsumer = NewsQQClientCodecConfigurerConsumer.class)
 public interface NewsQQExchangeClient extends BaseGetExchangeClient<NewsQQResponse> {
 
     @GetExchange("/gw/event/hot_ranking_list?page_size=50")

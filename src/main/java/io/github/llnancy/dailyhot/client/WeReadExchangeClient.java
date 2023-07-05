@@ -1,7 +1,7 @@
 package io.github.llnancy.dailyhot.client;
 
 import io.github.llnancy.dailyhot.client.WeReadExchangeClient.WeReadResponse;
-import io.github.llnancy.httpexchange.core.ExchangeClient;
+import io.github.llnancy.httpexchange.core.HttpExchangeClient;
 import lombok.Data;
 import org.springframework.web.service.annotation.GetExchange;
 import reactor.core.publisher.Mono;
@@ -14,7 +14,7 @@ import java.util.List;
  * @author llnancy admin@lilu.org.cn
  * @since JDK17 2023/6/29
  */
-@ExchangeClient(baseUrl = "https://weread.qq.com")
+@HttpExchangeClient(baseUrl = "https://weread.qq.com")
 public interface WeReadExchangeClient extends BaseGetExchangeClient<WeReadResponse> {
 
     @GetExchange("/web/bookListInCategory/rising?maxIndex=0&rank=1")

@@ -2,7 +2,7 @@ package io.github.llnancy.dailyhot.client;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.github.llnancy.dailyhot.client.TouTiaoExchangeClient.TouTiaoResponse;
-import io.github.llnancy.httpexchange.core.ExchangeClient;
+import io.github.llnancy.httpexchange.core.HttpExchangeClient;
 import lombok.Data;
 import org.springframework.web.service.annotation.GetExchange;
 import reactor.core.publisher.Mono;
@@ -15,7 +15,7 @@ import java.util.List;
  * @author llnancy admin@lilu.org.cn
  * @since JDK17 2023/6/29
  */
-@ExchangeClient(baseUrl = "https://www.toutiao.com")
+@HttpExchangeClient(baseUrl = "https://www.toutiao.com")
 public interface TouTiaoExchangeClient extends BaseGetExchangeClient<TouTiaoResponse> {
 
     @GetExchange("/hot-event/hot-board/?origin=toutiao_pc")

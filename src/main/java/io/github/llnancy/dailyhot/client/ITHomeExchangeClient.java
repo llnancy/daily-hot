@@ -1,6 +1,6 @@
 package io.github.llnancy.dailyhot.client;
 
-import io.github.llnancy.httpexchange.core.ExchangeClient;
+import io.github.llnancy.httpexchange.core.HttpExchangeClient;
 import org.springframework.web.service.annotation.GetExchange;
 import reactor.core.publisher.Mono;
 
@@ -10,7 +10,7 @@ import reactor.core.publisher.Mono;
  * @author llnancy admin@lilu.org.cn
  * @since JDK17 2023/6/29
  */
-@ExchangeClient(baseUrl = "https://m.ithome.com")
+@HttpExchangeClient(baseUrl = "https://m.ithome.com")
 public interface ITHomeExchangeClient extends BaseGetExchangeClient<String> {
 
     @GetExchange("/rankm/")
