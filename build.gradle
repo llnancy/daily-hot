@@ -1,0 +1,49 @@
+import org.springframework.boot.buildpack.platform.docker.type.ImageName
+import org.springframework.boot.buildpack.platform.docker.type.ImageReference
+
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.1.1'
+    id 'io.spring.dependency-management' version '1.1.0'
+    id 'org.graalvm.buildtools.native' version '0.9.23'
+}
+
+group = 'io.github.llnancy'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    sourceCompatibility = '17'
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-webflux'
+    implementation 'io.github.llnancy:httpexchange-spring-boot-starter:0.0.1-SNAPSHOT'
+    implementation 'org.jsoup:jsoup:1.16.1'
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'io.projectreactor:reactor-test'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+
+bootBuildImage {
+    imageName = ImageReference.of(
+            ImageName.of('llnancy/' + project.name),
+            project.version.toString()
+    ).toString()
+    // 不生效
+    environment.put("spring.profiles.active", "prod")
+}

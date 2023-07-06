@@ -1,20 +1,16 @@
-.PHONY: clean package build build-native push docker-compose docker-rm-f
+.PHONY: clean build build-native-image push docker-compose docker-rm-f
 
 IMAGE_NAME=llnancy/daily-hot
-IMAGE_TAG := $(shell grep -m 2 '<version>' pom.xml | sed -n '2s/.*<version>\(.*\)<\/version>.*/\1/p')
+IMAGE_TAG=$(shell awk -F "=" '/version/ {gsub(/[\047|"]/,""); print $$2}' build.gradle | tr -d ' ')
 
 clean:
-	mvn clean
-
-package:
-	mvn package
+	gradle clean
 
 build:
-	docker build --platform linux/amd64 -t ${IMAGE_NAME}:${IMAGE_TAG} .
+	gradle build
 
-build-native:
-	mvn -Pnative spring-boot:build-image \
-		-Dspring-boot.build-image.imageName=${IMAGE_NAME}:${IMAGE_TAG} \
+build-native-image:
+	gradle bootBuildImage
 
 push:
 	docker push ${IMAGE_NAME}:${IMAGE_TAG}
