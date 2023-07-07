@@ -10,6 +10,7 @@ plugins {
 
 group = 'io.github.llnancy'
 version = '0.0.1-SNAPSHOT'
+description = '今日热榜 API，一个聚合热门数据的 API 服务。'
 
 java {
     sourceCompatibility = '17'
@@ -35,7 +36,7 @@ dependencies {
     testImplementation 'io.projectreactor:reactor-test'
 }
 
-tasks.named('test') {
+test {
     useJUnitPlatform()
 }
 
