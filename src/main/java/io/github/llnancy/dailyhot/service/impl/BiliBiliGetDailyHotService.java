@@ -1,12 +1,14 @@
 package io.github.llnancy.dailyhot.service.impl;
 
 import io.github.llnancy.dailyhot.client.BaseGetExchangeClient;
+import io.github.llnancy.dailyhot.client.BiliBiliExchangeClient.BiliBiliRespData;
 import io.github.llnancy.dailyhot.client.BiliBiliExchangeClient.BiliBiliResponse;
 import io.github.llnancy.dailyhot.entity.BiliBiliData;
 import io.github.llnancy.dailyhot.service.AbstractGetDailyHotService;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 
+import java.util.Collections;
 import java.util.Optional;
 
 /**
@@ -21,7 +23,12 @@ public class BiliBiliGetDailyHotService extends AbstractGetDailyHotService<BiliB
     @Override
     public Flux<BiliBiliData> doDailyHot(BaseGetExchangeClient<BiliBiliResponse> exchangeClient) {
         return exchangeClient.dailyHot()
-                .flatMapIterable(biliBiliResponse -> biliBiliResponse.getData().getList())
+                .flatMapIterable(biliBiliResponse -> {
+                    BiliBiliRespData data = biliBiliResponse.getData();
+                    return Optional.ofNullable(biliBiliResponse.getData())
+                            .map(BiliBiliRespData::getList)
+                            .orElse(Collections.emptyList());
+                })
                 .map(item -> {
                     String id = item.getBvid();
                     return BiliBiliData.builder()

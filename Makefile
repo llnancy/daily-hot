@@ -4,13 +4,13 @@ IMAGE_NAME=llnancy/daily-hot
 IMAGE_TAG=$(shell awk -F "=" '/version/ {gsub(/[\047|"]/,""); print $$2}' build.gradle | tr -d ' ')
 
 clean:
-	gradle clean
+	./gradlew clean
 
 build:
-	gradle build
+	./gradlew build
 
 build-native-image:
-	gradle bootBuildImage
+	./gradlew bootBuildImage
 
 push:
 	docker push ${IMAGE_NAME}:${IMAGE_TAG}
